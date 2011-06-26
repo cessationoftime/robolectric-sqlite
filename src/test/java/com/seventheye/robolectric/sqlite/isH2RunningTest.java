@@ -12,8 +12,10 @@ import org.junit.runner.RunWith;
 
 import android.database.sqlite.SQLiteDatabase;
 
+import com.seventheye.robolectric.sqlite.util.SQLiteMap;
 import com.xtremelabs.robolectric.WithTestDefaultsRunner;
 import com.xtremelabs.robolectric.util.DatabaseConfig;
+import com.xtremelabs.robolectric.util.H2Map;
 
 @RunWith(WithTestDefaultsRunner.class)
 public class isH2RunningTest {
@@ -56,4 +58,8 @@ public class isH2RunningTest {
 	                ");");
     }
 	
+	@Test
+	public void isH2(){
+		Assert.assertTrue(DatabaseConfig.getDatabaseMap().getClass().getName().equals(H2Map.class.getName()));
+	}
     }

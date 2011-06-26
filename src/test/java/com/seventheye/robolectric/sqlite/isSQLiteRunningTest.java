@@ -15,6 +15,7 @@ import android.database.sqlite.SQLiteDatabase;
 import com.seventheye.robolectric.sqlite.util.SQLiteMap;
 import com.xtremelabs.robolectric.WithTestDefaultsRunner;
 import com.xtremelabs.robolectric.util.DatabaseConfig;
+import com.xtremelabs.robolectric.util.H2Map;
 import com.xtremelabs.robolectric.util.DatabaseConfig.UsingDatabaseMap;
 
 @UsingDatabaseMap(SQLiteMap.class)
@@ -60,4 +61,9 @@ public class isSQLiteRunningTest {
 	                "  big_int INTEGER\n" +
 	                ");");
     }
+		
+	@Test
+	public void isSQLite(){
+		Assert.assertTrue(DatabaseConfig.getDatabaseMap().getClass().getName().equals(SQLiteMap.class.getName()));
+	}
 }
