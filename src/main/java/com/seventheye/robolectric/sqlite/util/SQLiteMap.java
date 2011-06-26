@@ -1,7 +1,7 @@
 package com.seventheye.robolectric.sqlite.util;
 
 import com.xtremelabs.robolectric.util.DatabaseConfig;
-//TODO: create tests for each runner to make sure it loads Sqlite
+//TODO: determine if SQLite always returns lowercase column names the way H2 always returns UPPERCASE ones
 public class SQLiteMap implements DatabaseConfig.DatabaseMap {
 
 	public String getDriverClassName() {
