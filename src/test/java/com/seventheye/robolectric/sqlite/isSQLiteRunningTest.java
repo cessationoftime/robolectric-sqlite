@@ -15,7 +15,6 @@ import android.database.sqlite.SQLiteDatabase;
 import com.seventheye.robolectric.sqlite.util.SQLiteMap;
 import com.xtremelabs.robolectric.WithTestDefaultsRunner;
 import com.xtremelabs.robolectric.util.DatabaseConfig;
-import com.xtremelabs.robolectric.util.H2Map;
 import com.xtremelabs.robolectric.util.DatabaseConfig.UsingDatabaseMap;
 
 @UsingDatabaseMap(SQLiteMap.class)
@@ -25,7 +24,7 @@ public class isSQLiteRunningTest {
 	Connection connection;
 	@Before
     public void setUp() throws Exception {
-		connection = DatabaseConfig.OpenMemoryConnection();
+		connection = DatabaseConfig.getMemoryConnection();
     }
 	
 	@Test

@@ -1,6 +1,5 @@
 package com.seventheye.robolectric.sqlite;
 
-import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import com.seventheye.robolectric.sqlite.util.PackagedSuite;

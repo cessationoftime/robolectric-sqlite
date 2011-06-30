@@ -10,8 +10,6 @@ import java.util.List;
 import java.util.jar.JarEntry;
 import java.util.jar.JarInputStream;
 
-import com.xtremelabs.robolectric.WithTestDefaultsRunner;
-
 public class PackageUtils {
 
 /**
