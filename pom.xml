@@ -6,6 +6,7 @@
     <groupId>com.seventheye.android</groupId>
     <artifactId>seventheye-android</artifactId>
     <version>0.0.1-SNAPSHOT</version>
+    <relativePath></relativePath>
   </parent>
   <groupId>com.seventheye.android</groupId>
   <artifactId>robolectric-sqlite</artifactId>
@@ -64,7 +65,7 @@
     <dependency>
         <groupId>com.google.android.maps</groupId>
         <artifactId>maps</artifactId>
-        <version>9_r1</version>
+        <version>9_r2</version>
         <scope>provided</scope>
     </dependency>
     <dependency>
