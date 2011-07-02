@@ -25,6 +25,7 @@ public class PackageUtils {
 		Class<?>[] classList;
 		
 		try {
+			//Pull classes from target folder of sourcecode (used by eclipse)
 			classList = getClasses(packageName);
 		} catch (ClassNotFoundException e) {
 			throw new RuntimeException(e);
@@ -32,10 +33,12 @@ public class PackageUtils {
 			throw new RuntimeException(e);
 		}
 
-		if (classList.length == 0)
+		if (classList.length == 0) {
+			//pull classes from JAR file (used by maven)
 			classList = getClassNamesInPackage(referenceClass, packageName);
-		System.out.println("Classes found for testing: " + classList.length);
-		return filterTests(classList);
+		}
+		System.out.println("Robolectric test classes found: " + classList.length);
+		return classList;
 	}
 
 	/**
@@ -65,36 +68,17 @@ public class PackageUtils {
 				if (jarEntry == null) {
 					break;
 				}
-				if ((jarEntry.getName().startsWith(packageName))
-						&& (jarEntry.getName().endsWith(".class"))) {
+				if ((jarEntry.getName().startsWith(packageName)) && (jarEntry.getName().endsWith("Test.class"))) {
 					String className = jarEntry.getName()
 							.replaceAll("/", "\\.").replace(".class", "");
 
-					classes.add(Class.forName(className));
+					classes.add(PackageUtils.class.getClassLoader().loadClass(className));
 				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return classes.toArray(new Class[classes.size()]);
-	}
-
-	/**
-	 * Get those classes in the given array that have a name ending with the
-	 * word 'Test'
-	 * @param classes
-	 * @return
-	 */
-	private static Class<?>[] filterTests(Class<?>[] classes) {
-		ArrayList<Class<?>> tests = new ArrayList<Class<?>>();
-
-		for (Class<?> c : classes) {
-			String name = c.getName();
-			if (name.endsWith("Test"))
-				tests.add(c);
-		}
-
-		return tests.toArray(new Class[0]);
 	}
 
 	/**
@@ -149,11 +133,13 @@ public class PackageUtils {
 				assert !file.getName().contains(".");
 				classes.addAll(findClasses(file,
 						packageName + "." + file.getName()));
-			} else if (file.getName().endsWith(".class")) {
-				classes.add(Class.forName(packageName
-						+ '.'
-						+ file.getName().substring(0,
-								file.getName().length() - 6)));
+			} else if (file.getName().endsWith("Test.class")) {
+				String classname =packageName
+				+ '.'
+				+ file.getName().substring(0,
+						file.getName().length() - 6);
+
+				classes.add(PackageUtils.class.getClassLoader().loadClass(classname));
 			}
 		}
 		return classes;
