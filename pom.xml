@@ -3,19 +3,29 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>com.seventheye.android</groupId>
-    <artifactId>seventheye-android</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-    <relativePath></relativePath>
+        <groupId>org.sonatype.oss</groupId>
+        <artifactId>oss-parent</artifactId>
+        <version>5</version>
   </parent>
   <groupId>com.seventheye.android</groupId>
   <artifactId>robolectric-sqlite</artifactId>
-  <version>1.0-RC2-SNAPSHOT</version>
+  <version>1.0-RC5-SNAPSHOT</version>
   <packaging>jar</packaging>
 
   <name>Robolectric-SQLite</name>
   
-
+ <distributionManagement>
+    <repository>
+      <id>inhouse</id>
+      <name>Inhouse Internal Release Repository</name>
+      <url>scp://redsoftserver/var/www/maven2_repo/inhouse</url>
+    </repository>
+    <snapshotRepository>
+      <id>inhouse_snapshot</id>
+      <name>Inhouse Internal Snapshot Repository</name>
+      <url>scp://redsoftserver/var/www/maven2_repo/inhouse_snapshot</url>
+    </snapshotRepository>
+  </distributionManagement>
   <dependencies>
   <dependency>
             <groupId>org.hamcrest</groupId>
@@ -39,12 +49,12 @@
     <dependency>
 	  <groupId>com.pivotallabs</groupId>
 	  <artifactId>robolectric</artifactId>
-	  <version>1.0-RC2-SNAPSHOT</version>
+	  <version>1.0-RC5-SNAPSHOT</version>
     </dependency>
     <dependency>
       <groupId>com.pivotallabs</groupId>
       <artifactId>robolectric</artifactId>
-      <version>1.0-RC2-SNAPSHOT</version>
+      <version>1.0-RC5-SNAPSHOT</version>
       <classifier>tests</classifier>
     </dependency>
     <dependency>
@@ -89,6 +99,13 @@
    </developers>
    
    <build>
+     <extensions>
+        <extension>
+            <groupId>org.apache.maven.wagon</groupId>
+            <artifactId>wagon-ssh</artifactId>
+            <version>1.0-beta-7</version>
+        </extension>
+    </extensions>
         <plugins>
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
