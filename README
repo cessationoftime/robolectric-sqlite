@@ -1,0 +1,1 @@
+This extension to Robolectric has now been incorporated into the current version of the main Robolectric project.  Both the SQLite DatabaseMap and the H2 DatabaseMap are included with Robolectric.
